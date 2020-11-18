@@ -50,3 +50,12 @@ h1, h2, h3, h4 {
 .post h1 a, .post h1 a:visited {
     color: #000000;
 }
+
+
+.add_comment {
+    border: 1px solid #333;
+    display: inline-block;
+    padding: 5px 15px;
+    text-decoration: none;
+    color: #000;
+  }

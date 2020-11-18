@@ -10,10 +10,11 @@
         <p>{{post.author}}</p>
         <p>{{post.text}}</p>
         <p>{{post.created_date}}</p>
-        <form action="{% url 'comment_new' post_pk=post.pk %}" method="POST" class="post-form">{% csrf_token %}
-        {{ comment_form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-        </form>
+        <a href="{% url 'comment_new' post_pk=post.pk %}" class="add_comment">Добавить комментарий</a>
+<!--        <form action="{% url 'comment_new' post_pk=post.pk %}" method="POST" class="post-form">{% csrf_token %}-->
+<!--        {{ comment_form.as_p }}-->
+<!--        <button type="submit" class="save btn btn-default">Save</button>-->
+<!--        </form>-->
         {% for comment in comments %}
         <div>
             <a class="btn btn-default" href="{% url 'comment_edit' comment_pk=comment.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
