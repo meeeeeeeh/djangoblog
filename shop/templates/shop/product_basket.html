@@ -1,0 +1,20 @@
+{% extends 'shop/product_base.html' %}
+
+{% block content %}
+
+                {% for product in products %}
+                    <div>
+                        <a href="{% url 'orders_history' %}">История заказов</a>
+                        <p>Название: {{product.products.name}}</p>
+                        <p>Количество: {{product.product_count}}</p>
+                        <br/>
+                        <a href="{% url 'remove_from_basket' product_pk=product.pk%}">Удалить</a>
+                        <a href="{% url 'remove_all_products' product_pk=product.pk %}">Удалить все товары</a>
+                    </div>
+
+                {% endfor %}
+                    <a href="{% url 'delete_all' %}">Удалить все товары из корзины</a>
+                <div>{{basket.total_cost}}</div>
+                    <a href="{% url 'order' %}">Сформировать заказ</a>
+
+{% endblock %}

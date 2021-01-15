@@ -8,11 +8,19 @@
                     <div class="post">
                         <h1><a href="{% url 'post_detail' post_pk=post.pk %}">{{post.title}}</a></h1>
                         <p>{{post.author}}</p>
+                        <img height="200" src="{{ post.cover.url}}" alt="{{post.cover}}" width="200">
                         <p>{{post.text}}</p>
                         <p>{{post.created_date}}</p>
+                        <p>Просмотры: {{ post.view }}</p>
+                        <p>Количество комментариев: {{post.comments.count}}</p>
                     </div>
                 {% endfor %}
             </div>
         </div>
+    </div>
+    <div>
+        {% for tag in tags %}
+        <a href="{% url 'tag_list' tag_pk=tag.pk %}">{{tag.tag_name}}<br/></a>
+        {% endfor %}
     </div>
 {% endblock %}

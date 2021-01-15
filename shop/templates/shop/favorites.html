@@ -1,0 +1,14 @@
+{% extends 'shop/product_base.html' %}
+
+{% block content %}
+
+    {% for favorite in favorites %}
+        {% for product in favorite.products.all %}
+                   <div>
+                       <p>{{product.name}}</p>
+                    </div>
+        {% endfor %}
+    {% endfor %}
+
+
+{% endblock %}

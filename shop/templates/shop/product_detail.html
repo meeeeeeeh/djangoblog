@@ -1,0 +1,25 @@
+{% extends 'shop/product_base.html' %}
+
+{% block content %}
+
+
+                    <div>
+                        <a href="{% url 'add_to_basket' product_pk=product.pk %}">Добавить в корзину</a>
+                        <a href="{% url 'add_to_favorites' product_pk=product.pk %}">Добавить в желаемое</a>
+                        {% if product.cover %}
+                        <p><img height="200" src="{{ product.cover.url}}" width="200"></p>
+                        {% endif %}
+                        <p>Название: {{product.name}}</p>
+                        <p>Описание: {{product.description}}</p>
+                        <p>Цена: {{product.cost}}</p>
+                        <p>Категории: {{product.category.name}} </p>
+                        <div>Отзывы:
+                            {% for review in reviews %}
+                            <p>{{review.text}} {{review.value}}</p>
+                            {% endfor %}
+                        </div>
+                        <p>Рейтинг: {{product.rating}}</p>
+                    </div>
+
+
+{% endblock %}

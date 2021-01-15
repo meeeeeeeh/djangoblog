@@ -8,6 +8,7 @@ class PostForm(forms.ModelForm):
         fields = [
             'title',
             'text',
+            'cover',
         ]
 
 
@@ -17,3 +18,5 @@ class CommentForm(forms.ModelForm):
         fields = [
             'text',
         ]
+
+

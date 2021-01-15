@@ -1,0 +1,76 @@
+{% extends 'post/base.html' %}
+
+{% block content %}
+   <div class="">
+                    <div>
+
+                          <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#description" aria-controls="home" role="tab" data-toggle="tab">
+                                    Рекомендации по лайкам
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#delivery" aria-controls="profile" role="tab" data-toggle="tab">
+                                    Рекомендации по просмотрам
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
+                                    Рекомендации по комментариям
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
+                                    Settings
+                                </a>
+                            </li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="description">
+                                {% for post in posts_by_likes %}
+                                <div class="post">
+                                <h1><a href="{% url 'post_detail' post_pk=post.pk %}">{{post.title}}</a></h1>
+                                <p>{{post.author}}</p>
+                                <img height="200" src="{{ post.cover.url}}" alt="{{post.cover}}" width="200">
+                                <p>{{post.text}}</p>
+                                <p>{{post.created_date}}</p>
+                                <p>Просмотры: {{ post.view }}</p>
+                                    <p>Количество комментариев: {{post.comments.count}}</p>
+                                 </div>
+                                 {% endfor %}
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="delivery">
+                                {% for post in posts_by_views %}
+                                <div class="post">
+                                    <h1><a href="{% url 'post_detail' post_pk=post.pk %}">{{post.title}}</a></h1>
+                                    <p>{{post.author}}</p>
+                                    <img height="200" src="{{ post.cover.url}}" alt="{{post.cover}}" width="200">
+                                    <p>{{post.text}}</p>
+                                    <p>{{post.created_date}}</p>
+                                    <p>Просмотры: {{ post.view }}</p>
+                                    <p>Количество комментариев: {{post.comments.count}}</p>
+                                </div>
+                                    {% endfor %}
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="messages">
+                                {% for post in posts_by_comments %}
+                                <div class="post">
+                                    <h1><a href="{% url 'post_detail' post_pk=post.pk %}">{{post.title}}</a></h1>
+                                    <p>{{post.author}}</p>
+                                    <img height="200" src="{{ post.cover.url}}" alt="{{post.cover}}" width="200">
+                                    <p>{{post.text}}</p>
+                                    <p>{{post.created_date}}</p>
+                                    <p>Просмотры: {{ post.view }}</p>
+                                    <p>Количество комментариев: {{post.comments.count}}</p>
+                                </div>
+                                    {% endfor %}
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="settings">...</div>
+                          </div>
+
+                    </div>
+   </div>
+{% endblock %}

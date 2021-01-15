@@ -8,11 +8,21 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script  type="text/javascript"  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <link href="https://getbootstrap.com/examples/navbar-static-top.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 </head>
 <body>
     <div class="page-header">
         {% if user.is_authenticated %}
-            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Новый пост</a>
+            <a href="{% url 'draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Черновики</a>
+            <a href="{% url 'recommendations' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Рекомендации</a>
+            <a href="{% url 'favorites' %}" class="top-menu"><span class="glyphicon glyphicon-star"></span>Избранное</a>
         {% endif %}
         <h1>
             <a href="/post/list">
@@ -20,7 +30,11 @@
             </a>
         </h1>
     </div>
-
+        <div>
+            Категории:<br/> {% for category in categories %}
+            <a href="{% url 'category_posts' category_pk=category.pk %}">{{category.category_name}}<br/></a>
+            {% endfor %}
+        </div>
 
     {% block content %}
 

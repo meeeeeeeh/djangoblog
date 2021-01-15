@@ -5,12 +5,50 @@
         {% if user.is_authenticated %}
             <a class="btn btn-default" href="{% url 'post_edit' post_pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             <a class="btn btn-default" href="{% url 'delete_post' post_pk=post.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+            <a class="btn btn-default" href="{% url 'publish' post_pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'add_to_favorite' post_pk=post.pk %}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+
         {% endif %}
         <h1>{{post.title}}</h1>
         <p>{{post.author}}</p>
+        <img height="200" src="{{ post.cover.url}}" alt="{{post.cover}}" width="200">
         <p>{{post.text}}</p>
         <p>{{post.created_date}}</p>
+        <form action="{% url 'post_like_or_dislike' post_pk=post.pk %}" method="GET">{% csrf_token %}
+            <button type="submit" name="like" value="like">Lke</button> {{post.likes}}
+            <button name="dislike" data-model-name="dislike" value="dislike">Dislike</button> {{post.dislikes}}
+        </form>
+        <div>
+            Теги: {% for tag in tags %}
+            {{tag.tag_name}}
+            {% endfor %}
+        </div>
+
+        <div>
+
+            {{post.category.category_name}}
+
+        </div>
+
+        <div>
+
+            Рейтинг: {{rating}}
+
+        </div>
+<!--        <p>-->
+<!--            <a name="like" class="btn btn-default" href="{% url 'post_like_or_dislike' post_pk=post.pk %}">-->
+<!--                <span class="glyphicon glyphicon-thumbs-up"></span>-->
+<!--            </a> {{post.likes}}-->
+<!--            <a class="btn btn-default" href="{% url 'post_like_or_dislike' post_pk=post.pk %}">-->
+<!--                <span class="glyphicon glyphicon-thumbs-down"></span>-->
+<!--            </a> {{post.dislikes}}-->
+<!--        </p>-->
+
+
+
+        <p>Количество комментариев: {{post.comments.count}}</p>
         <a href="{% url 'comment_new' post_pk=post.pk %}" class="add_comment">Добавить комментарий</a>
+
 <!--        <form action="{% url 'comment_new' post_pk=post.pk %}" method="POST" class="post-form">{% csrf_token %}-->
 <!--        {{ comment_form.as_p }}-->
 <!--        <button type="submit" class="save btn btn-default">Save</button>-->

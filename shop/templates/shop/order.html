@@ -1,0 +1,12 @@
+{% extends 'shop/product_base.html' %}
+{% block content %}
+
+{% for product in ordered_products %}
+<p>{{product.name}}</p>
+<p>Количество: {{product.product_count}}</p>
+{% endfor %}
+
+<p>{{order_total_cost}}</p>
+
+
+{% endblock %}

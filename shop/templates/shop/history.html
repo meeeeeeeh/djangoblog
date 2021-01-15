@@ -1,0 +1,13 @@
+{% extends 'shop/product_base.html' %}
+
+{% block content %}
+    {% for order in orders %}
+        {% for product in order.products.all %}
+            <p>{{product.name}}</p>
+        {% endfor %}
+    <p>{{order.status}}</p>
+
+    {% endfor %}
+
+
+{% endblock %}

@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'post',
+    'shop',
+    'accounts',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -67,8 +70,16 @@ TEMPLATES = [
         },
     },
 ]
-
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "testmail123qweasd@gmail.com"
+EMAIL_HOST_PASSWORD = "Password123qweasd"
+EMAIL_USE_TLS = True
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 WSGI_APPLICATION = 'blog.wsgi.application'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = '/products'
 
 
 # Database
@@ -81,6 +92,7 @@ DATABASES = {
     }
 }
 
+MPTT_ADMIN_LEVEL_INDENT = 40
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -120,3 +132,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SITE_URL = ''
